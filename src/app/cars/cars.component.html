@@ -1,0 +1,41 @@
+<h2>Select a car:</h2>
+
+<h3>Click on any car to be rented:</h3>
+
+<ul class="cars">
+  <li *ngFor="let car of cars" (click)="onSelect(car)">
+    {{car.plateNumber}}: {{car.model}}: {{car.price}} euros/day
+    <div *ngIf="car.rented == false">
+      TO BE RENTED
+    </div>
+    <div *ngIf="car.rented == true">
+      RENTED
+    </div>
+  </li>
+</ul>
+
+<div *ngIf="selectedCar">
+  <h2>Selected car: {{selectedCar.model | uppercase}}
+  </h2>
+  <button (click)="rent(selectedCar)">Rent it now !</button>
+</div>
+
+
+<h3>CAR RENTAL SERVICE</h3>
+<a class="displayGetBackLink" (click)="displayGetBack()"> Get back a car</a>
+
+<div *ngIf="getBackMenuIsVisible">
+
+  <h4>Choose the car to get back</h4>
+  
+  <select>
+    <option *ngFor="let car of cars">
+      {{car.model}}
+    </option>
+  </select>
+
+  <!-- <div>
+    Plate number of the selected car : {{carSelectedToGetBack.model}}
+  </div> -->
+
+</div>
