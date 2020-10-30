@@ -3,6 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import { Car } from '../car';
 import { CarService } from '../car.service';
 
+import { FormGroup, FormControl} from '@angular/forms';
+
+
 @Component({
   selector: 'app-cars',
   templateUrl: './cars.component.html',
@@ -13,7 +16,11 @@ export class CarsComponent implements OnInit {
   cars: Car[];
   selectedCar: Car;
   getBackMenuIsVisible = false;
-  carSelectedToGetBack: Car;
+  carSelectedToGetBack: Car = null;
+
+  form = new FormGroup({
+    carSelector: new FormControl('')
+  });
 
   constructor(private carService: CarService) { }
 
@@ -39,10 +46,15 @@ export class CarsComponent implements OnInit {
     this.getBackMenuIsVisible = !this.getBackMenuIsVisible;
   }
 
-  selectCarToGetBack(event): void{
-  console.log(event);
-  console.log(event.target.value);
-  //  this.carSelectedToGetBack = car; 
+  submit(){
+    console.log(this.form.value);
+    // this.carSelectedToGetBack = this.form.value;
+  }
+
+  changeCar(e) {
+    console.log(e.target.value);
+    this.carSelectedToGetBack = e.target.value;
+
   }
 
 }

@@ -21,21 +21,27 @@
 </div>
 
 
+<br><br><br>
+
 <h3>CAR RENTAL SERVICE</h3>
 <a class="displayGetBackLink" (click)="displayGetBack()"> Get back a car</a>
 
 <div *ngIf="getBackMenuIsVisible">
 
   <h4>Choose the car to get back</h4>
-  
-  <select>
-    <option *ngFor="let car of cars">
-      {{car.model}}
-    </option>
-  </select>
 
-  <!-- <div>
-    Plate number of the selected car : {{carSelectedToGetBack.model}}
-  </div> -->
+  <form [formGroup]="form" (ngSubmit)="submit()">    
+    <div>
+        <select formControlName="carSelector" (change)="changeCar($event)">
+            <option>Choose a car</option>
+            <option *ngFor="let car of cars">{{car.model}}</option>
+        </select>
+    </div>   
+    <!-- <button type="submit">Submit</button> -->
+  </form>
+
+  <div>
+    Plate number of the selected car : {{carSelectedToGetBack}}
+  </div>
 
 </div>
